@@ -21,9 +21,9 @@ final class MainCellView: NSTableCellView {
         addSubview(label)
     }
     
-    func configure(with breed: String) {
+    func configure(with breed: CatBreed) {
         if let label = subviews.first as? NSTextField {
-            label.stringValue = breed
+            label.stringValue = breed.name
         }
     }
 }

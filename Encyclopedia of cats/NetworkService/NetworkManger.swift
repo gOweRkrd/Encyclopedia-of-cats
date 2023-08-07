@@ -6,8 +6,39 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetchCatBreeds(completion: @escaping ([String]) -> Void) {
-        let catBreeds = ["Maine Coon", "Siamese", "Persian", "Bengal", "Sphynx", "Ragdoll, Maine Coon", "Siamese", "Persian", "Bengal", "Sphynx", "Ragdoll, Maine Coon", "Siamese", "Persian", "Bengal", "Sphynx", "Ragdoll"]
-        completion(catBreeds)
+    func fetchCatBreeds(completion: @escaping ([CatBreed]?) -> Void) {
+        let apiKey = "live_yqJTWHB0Cu3gnYox6LBsIXGa6z0g2AKW6Bst5fuUm3JGrWUrlTHefPjdyDmP3LqV"
+        let url = URL(string: "https://api.thecatapi.com/v1/breeds")!
+        
+        var request = URLRequest(url: url)
+        request.addValue(apiKey, forHTTPHeaderField: "x-api-key")
+        
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            if let error = error {
+                print("Error fetching cat breeds: \(error)")
+                completion(nil)
+                return
+            }
+            
+            guard let data = data else {
+                print("No data received")
+                completion(nil)
+                return
+            }
+            
+            do {
+                let catBreeds = try JSONDecoder().decode([CatBreed].self, from: data)
+                completion(catBreeds)
+            } catch {
+                print("Error decoding JSON: \(error)")
+                completion(nil)
+            }
+        }.resume()
+        
     }
+}
+
+struct CatBreed: Codable {
+    let id: String
+    let name: String
 }

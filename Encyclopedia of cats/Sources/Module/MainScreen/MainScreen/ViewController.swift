@@ -2,7 +2,7 @@ import Cocoa
 
 final class ViewController: NSViewController {
     
-    var catBreeds: [String] = []
+    var catBreeds: [CatBreed] = []
     let breedDescriptionViewController = DetailViewController()
     
     private lazy var tableView: NSTableView = {
@@ -30,8 +30,12 @@ final class ViewController: NSViewController {
     
     func fetchCatBreeds() {
         NetworkManager.shared.fetchCatBreeds { [weak self] breeds in
-            self?.catBreeds = breeds
-            self?.tableView.reloadData()
+            if let breeds = breeds {
+                self?.catBreeds = breeds
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            }
         }
     }
     
@@ -73,7 +77,7 @@ extension ViewController: NSTableViewDelegate {
         let selectedRow = tableView.selectedRow
         if selectedRow >= 0 && selectedRow < catBreeds.count {
             let selectedBreed = catBreeds[selectedRow]
-            breedDescriptionViewController.updateDescription(with: getDescription(for: selectedBreed))
+            breedDescriptionViewController.updateDescription(with: getDescription(for: selectedBreed.name))
         } else {
             breedDescriptionViewController.updateDescription(with: "")
         }

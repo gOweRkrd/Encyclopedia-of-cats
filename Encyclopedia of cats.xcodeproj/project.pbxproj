@@ -26,6 +26,7 @@
 		5068CC8B2A80F38D008235D6 /* MainCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellView.swift; sourceTree = "<group>"; };
 		5068CC932A80FEF8008235D6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5068CC9C2A810590008235D6 /* NetworkManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManger.swift; sourceTree = "<group>"; };
+		5068CCD52A8153BD008235D6 /* Encyclopedia-of-cats-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Encyclopedia-of-cats-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +59,7 @@
 		5068CC772A7F82EC008235D6 /* Encyclopedia of cats */ = {
 			isa = PBXGroup;
 			children = (
+				5068CCD52A8153BD008235D6 /* Encyclopedia-of-cats-Info.plist */,
 				5068CC9B2A810587008235D6 /* NetworkService */,
 				5068CC8D2A80FC91008235D6 /* Sources */,
 				5068CC8F2A80FCA6008235D6 /* Application */,
@@ -378,7 +380,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 53J92LZ5NM;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Encyclopedia-of-cats-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
@@ -403,7 +407,9 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 53J92LZ5NM;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Encyclopedia-of-cats-Info.plist";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_NSMainStoryboardFile = Main;
 				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
