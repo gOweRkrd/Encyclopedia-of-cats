@@ -14,6 +14,7 @@
 		5068CC8C2A80F38D008235D6 /* MainCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068CC8B2A80F38D008235D6 /* MainCellView.swift */; };
 		5068CC942A80FEF8008235D6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068CC932A80FEF8008235D6 /* DetailViewController.swift */; };
 		5068CC9D2A810590008235D6 /* NetworkManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068CC9C2A810590008235D6 /* NetworkManger.swift */; };
+		5068CCD92A8169C2008235D6 /* NetworkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068CCD82A8169C2008235D6 /* NetworkModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		5068CC932A80FEF8008235D6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		5068CC9C2A810590008235D6 /* NetworkManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManger.swift; sourceTree = "<group>"; };
 		5068CCD52A8153BD008235D6 /* Encyclopedia-of-cats-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Encyclopedia-of-cats-Info.plist"; sourceTree = SOURCE_ROOT; };
+		5068CCD82A8169C2008235D6 /* NetworkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 			isa = PBXGroup;
 			children = (
 				5068CC9C2A810590008235D6 /* NetworkManger.swift */,
+				5068CCD82A8169C2008235D6 /* NetworkModel.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5068CC9D2A810590008235D6 /* NetworkManger.swift in Sources */,
+				5068CCD92A8169C2008235D6 /* NetworkModel.swift in Sources */,
 				5068CC7B2A7F82EC008235D6 /* ViewController.swift in Sources */,
 				5068CC942A80FEF8008235D6 /* DetailViewController.swift in Sources */,
 				5068CC8C2A80F38D008235D6 /* MainCellView.swift in Sources */,

@@ -2,7 +2,7 @@ import Cocoa
 
 final class ViewController: NSViewController {
     
-    var catBreeds: [CatBreed] = []
+    var catBreeds: [NetworkModel] = []
     let breedDescriptionViewController = DetailViewController()
     
     private lazy var tableView: NSTableView = {
@@ -38,12 +38,6 @@ final class ViewController: NSViewController {
             }
         }
     }
-    
-    // MARK: - Helper
-    
-    func getDescription(for breed: String) -> String {
-        return "Описание породы \(breed)"
-    }
 }
 
 // MARK: - NSTableViewDataSource
@@ -77,12 +71,18 @@ extension ViewController: NSTableViewDelegate {
         let selectedRow = tableView.selectedRow
         if selectedRow >= 0 && selectedRow < catBreeds.count {
             let selectedBreed = catBreeds[selectedRow]
-            breedDescriptionViewController.updateDescription(with: getDescription(for: selectedBreed.name))
-        } else {
-            breedDescriptionViewController.updateDescription(with: "")
+            
+            let description = """
+            Temperament: \(selectedBreed.temperament)
+            Origin: \(selectedBreed.origin)
+            Description: \(selectedBreed.description)
+            """
+            
+            breedDescriptionViewController.updateDescription(with: description)
+            breedDescriptionViewController.updateData(with: selectedBreed)
+            
         }
     }
-    
 }
 
 // MARK: - Setup constrains

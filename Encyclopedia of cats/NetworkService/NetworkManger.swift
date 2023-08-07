@@ -6,7 +6,7 @@ final class NetworkManager {
     
     private init() {}
     
-    func fetchCatBreeds(completion: @escaping ([CatBreed]?) -> Void) {
+    func fetchCatBreeds(completion: @escaping ([NetworkModel]?) -> Void) {
         let apiKey = "live_yqJTWHB0Cu3gnYox6LBsIXGa6z0g2AKW6Bst5fuUm3JGrWUrlTHefPjdyDmP3LqV"
         let url = URL(string: "https://api.thecatapi.com/v1/breeds")!
         
@@ -27,7 +27,7 @@ final class NetworkManager {
             }
             
             do {
-                let catBreeds = try JSONDecoder().decode([CatBreed].self, from: data)
+                let catBreeds = try JSONDecoder().decode([NetworkModel].self, from: data)
                 completion(catBreeds)
             } catch {
                 print("Error decoding JSON: \(error)")
@@ -36,9 +36,4 @@ final class NetworkManager {
         }.resume()
         
     }
-}
-
-struct CatBreed: Codable {
-    let id: String
-    let name: String
 }
