@@ -13,6 +13,7 @@
 		5068CC802A7F82EE008235D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5068CC7E2A7F82EE008235D6 /* Main.storyboard */; };
 		5068CC8C2A80F38D008235D6 /* MainCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068CC8B2A80F38D008235D6 /* MainCellView.swift */; };
 		5068CC942A80FEF8008235D6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068CC932A80FEF8008235D6 /* DetailViewController.swift */; };
+		5068CC9D2A810590008235D6 /* NetworkManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068CC9C2A810590008235D6 /* NetworkManger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		5068CC812A7F82EE008235D6 /* Encyclopedia_of_cats.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Encyclopedia_of_cats.entitlements; sourceTree = "<group>"; };
 		5068CC8B2A80F38D008235D6 /* MainCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCellView.swift; sourceTree = "<group>"; };
 		5068CC932A80FEF8008235D6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		5068CC9C2A810590008235D6 /* NetworkManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 		5068CC772A7F82EC008235D6 /* Encyclopedia of cats */ = {
 			isa = PBXGroup;
 			children = (
+				5068CC9B2A810587008235D6 /* NetworkService */,
 				5068CC8D2A80FC91008235D6 /* Sources */,
 				5068CC8F2A80FCA6008235D6 /* Application */,
 				5068CC902A80FCCD008235D6 /* Resources */,
@@ -129,6 +132,14 @@
 				5068CC932A80FEF8008235D6 /* DetailViewController.swift */,
 			);
 			path = DetailScreen;
+			sourceTree = "<group>";
+		};
+		5068CC9B2A810587008235D6 /* NetworkService */ = {
+			isa = PBXGroup;
+			children = (
+				5068CC9C2A810590008235D6 /* NetworkManger.swift */,
+			);
+			path = NetworkService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -223,6 +234,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5068CC9D2A810590008235D6 /* NetworkManger.swift in Sources */,
 				5068CC7B2A7F82EC008235D6 /* ViewController.swift in Sources */,
 				5068CC942A80FEF8008235D6 /* DetailViewController.swift in Sources */,
 				5068CC8C2A80F38D008235D6 /* MainCellView.swift in Sources */,

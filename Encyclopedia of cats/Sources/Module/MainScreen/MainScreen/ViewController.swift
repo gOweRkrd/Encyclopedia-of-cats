@@ -2,11 +2,10 @@ import Cocoa
 
 final class ViewController: NSViewController {
     
-    let catBreeds = ["Maine Coon", "Siamese", "Persian", "Bengal", "Sphynx", "RagdollBengal", "Sphynx", "Ragdoll,Bengal", "Sphynx", "Ragdoll,Bengal", "Sphynx", "Ragdoll"]
-    
+    var catBreeds: [String] = []
     let breedDescriptionViewController = DetailViewController()
     
-    lazy var tableView: NSTableView = {
+    private lazy var tableView: NSTableView = {
         let tableView = NSTableView()
         let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("catBreedColumn"))
         tableView.addTableColumn(column)
@@ -25,6 +24,15 @@ final class ViewController: NSViewController {
         addSubviewsView()
         setupConstraints()
         tableView.reloadData()
+        fetchCatBreeds()
+        
+    }
+    
+    func fetchCatBreeds() {
+        NetworkManager.shared.fetchCatBreeds { [weak self] breeds in
+            self?.catBreeds = breeds
+            self?.tableView.reloadData()
+        }
     }
     
     // MARK: - Helper
