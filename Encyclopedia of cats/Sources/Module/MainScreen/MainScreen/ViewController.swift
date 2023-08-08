@@ -76,13 +76,14 @@ extension ViewController: NSTableViewDelegate {
             Temperament: \(selectedBreed.temperament)
             Origin: \(selectedBreed.origin)
             Description: \(selectedBreed.description)
+            Link of Wikipedia: \(selectedBreed.wikipediaURL?.absoluteString ?? "No Wikipedia link")
             """
             
-            breedDescriptionViewController.updateDescription(with: description)
+            breedDescriptionViewController.updateDescription(with: description, wikipediaURL: selectedBreed.wikipediaURL)
             breedDescriptionViewController.updateData(with: selectedBreed)
-            
         }
     }
+
 }
 
 // MARK: - Setup constrains
