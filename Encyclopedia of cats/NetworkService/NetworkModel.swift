@@ -7,9 +7,22 @@ struct NetworkModel: Decodable {
     let origin: String
     let description: String
     let wikipediaURL: URL?
+    let energyLevel: Int
+    let intelligence: Int
+    let dogFriendly: Int
+    let adaptability: Int
+    let lifeSpan: String
+    let affectionLevel: Int
     
     private enum CodingKeys: String, CodingKey {
         case id, name, temperament, origin, description
         case wikipediaURL = "wikipedia_url"
+        case energyLevel = "energy_level"
+        case adaptability
+        case intelligence
+        case dogFriendly = "dog_friendly"
+        case lifeSpan = "life_span"
+        case affectionLevel = "affection_level"
+        
     }
 }

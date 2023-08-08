@@ -72,18 +72,10 @@ extension ViewController: NSTableViewDelegate {
         if selectedRow >= 0 && selectedRow < catBreeds.count {
             let selectedBreed = catBreeds[selectedRow]
             
-            let description = """
-            Temperament: \(selectedBreed.temperament)
-            Origin: \(selectedBreed.origin)
-            Description: \(selectedBreed.description)
-            Link of Wikipedia: \(selectedBreed.wikipediaURL?.absoluteString ?? "No Wikipedia link")
-            """
-            
-            breedDescriptionViewController.updateDescription(with: description, wikipediaURL: selectedBreed.wikipediaURL)
             breedDescriptionViewController.updateData(with: selectedBreed)
         }
     }
-
+    
 }
 
 // MARK: - Setup constrains
