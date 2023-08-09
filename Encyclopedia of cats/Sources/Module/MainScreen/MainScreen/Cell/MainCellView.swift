@@ -2,28 +2,60 @@ import Cocoa
 
 final class MainCellView: NSTableCellView {
     
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        setupUI()
-    }
+    private let containerView: NSView = {
+        let view = NSView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
     
-    required init?(coder decoder: NSCoder) {
-        super.init(coder: decoder)
-        setupUI()
-    }
-    
-    func setupUI() {
-        let label = NSTextField(frame: bounds)
+    private let breadLabel: NSTextField = {
+        let label = NSTextField()
         label.isBordered = false
         label.isEditable = false
         label.backgroundColor = NSColor.clear
         label.autoresizingMask = [.width, .height]
-        addSubview(label)
+        label.backgroundColor = NSColor.clear
+        label.font = NSFont.systemFont(ofSize: 16.0)
+        return label
+    }()
+    
+    // MARK: - Lifecycle
+    
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        addSubviewsView()
+        setupConstraints()
     }
     
+    required init?(coder decoder: NSCoder) {
+        super.init(coder: decoder)
+    }
+    
+    // MARK: - Public methods
+    
     func configure(with breed: NetworkModel) {
-        if let label = subviews.first as? NSTextField {
-            label.stringValue = breed.name
-        }
+        breadLabel.stringValue = breed.name
+    }
+}
+
+// MARK: - Setup constraints
+
+private extension MainCellView {
+    
+    func addSubviewsView() {
+        addSubview(containerView)
+        containerView.addSubview(breadLabel)
+    }
+    
+    func setupConstraints() {
+        NSLayoutConstraint.activate([
+            containerView.topAnchor.constraint(equalTo: topAnchor),
+            containerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            containerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            containerView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
+            breadLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 5),
+            breadLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 10)
+        ])
     }
 }

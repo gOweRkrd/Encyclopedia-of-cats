@@ -228,43 +228,51 @@ private extension DetailViewController {
     func setupConstraints() {
         NSLayoutConstraint.activate([
             
-            nameBreadLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
-            nameBreadLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            nameBreadLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: .topAnchor),
+            nameBreadLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
             
-            catImageView.topAnchor.constraint(equalTo: nameBreadLabel.bottomAnchor, constant: 10),
-            catImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
-            catImageView.widthAnchor.constraint(equalToConstant: 250),
-            catImageView.heightAnchor.constraint(equalToConstant: 250),
+            catImageView.topAnchor.constraint(equalTo: nameBreadLabel.bottomAnchor, constant: .leadingAnchor),
+            catImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            catImageView.widthAnchor.constraint(equalToConstant: .sizeImage),
+            catImageView.heightAnchor.constraint(equalToConstant: .sizeImage),
             
             originLabel.topAnchor.constraint(equalTo: catImageView.bottomAnchor, constant: 30),
-            originLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            originLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
             
-            lifeSpan.topAnchor.constraint(equalTo: originLabel.bottomAnchor, constant: 15),
-            lifeSpan.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            lifeSpan.topAnchor.constraint(equalTo: originLabel.bottomAnchor, constant: .topAnchor),
+            lifeSpan.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
             
-            temperamentLabel.topAnchor.constraint(equalTo: lifeSpan.bottomAnchor, constant: 15),
-            temperamentLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            temperamentLabel.topAnchor.constraint(equalTo: lifeSpan.bottomAnchor, constant: .topAnchor),
+            temperamentLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
             
-            descriptionLabel.topAnchor.constraint(equalTo: temperamentLabel.bottomAnchor, constant: 15),
-            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            descriptionLabel.topAnchor.constraint(equalTo: temperamentLabel.bottomAnchor, constant: .topAnchor),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
             
-            wikipediaLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: 15),
-            wikipediaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            wikipediaLabel.topAnchor.constraint(equalTo: descriptionLabel.bottomAnchor, constant: .topAnchor),
+            wikipediaLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
             
             energyLevelLabel.topAnchor.constraint(equalTo: wikipediaLabel.bottomAnchor, constant: 20),
-            energyLevelLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            energyLevelLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
             
-            intelligenceLabel.topAnchor.constraint(equalTo: energyLevelLabel.bottomAnchor, constant: 10),
-            intelligenceLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            intelligenceLabel.topAnchor.constraint(equalTo: energyLevelLabel.bottomAnchor, constant: .leadingAnchor),
+            intelligenceLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
             
-            adaptabilityLabel.topAnchor.constraint(equalTo: intelligenceLabel.bottomAnchor, constant: 10),
-            adaptabilityLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            adaptabilityLabel.topAnchor.constraint(equalTo: intelligenceLabel.bottomAnchor, constant: .leadingAnchor),
+            adaptabilityLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
             
-            affectionLevelLabel.topAnchor.constraint(equalTo: adaptabilityLabel.bottomAnchor, constant: 10),
-            affectionLevelLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            affectionLevelLabel.topAnchor.constraint(equalTo: adaptabilityLabel.bottomAnchor, constant: .leadingAnchor),
+            affectionLevelLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
             
-            dogFriendly.topAnchor.constraint(equalTo: affectionLevelLabel.bottomAnchor, constant: 10),
-            dogFriendly.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10)
+            dogFriendly.topAnchor.constraint(equalTo: affectionLevelLabel.bottomAnchor, constant: .leadingAnchor),
+            dogFriendly.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor)
         ])
     }
+}
+
+// MARK: - Constant Constraints
+
+private extension CGFloat {
+    static let leadingAnchor: CGFloat = 10
+    static let topAnchor: CGFloat = 15
+    static let sizeImage: CGFloat = 250
 }
