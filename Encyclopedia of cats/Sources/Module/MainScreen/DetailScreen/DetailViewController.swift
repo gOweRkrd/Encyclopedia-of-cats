@@ -12,6 +12,12 @@ final class DetailViewController: NSViewController {
         return imageView
     }()
     
+    private lazy var viewPhotosButton: NSButton = {
+        let button = NSButton(title: "View Photos", target: self, action: #selector(viewPhotosButtonTapped))
+        button.bezelStyle = .rounded
+        return button
+    }()
+    
     private let descriptionTextView: NSTextView = {
         let textView = NSTextView()
         textView.isEditable = false
@@ -123,6 +129,7 @@ final class DetailViewController: NSViewController {
         self.view = descriptionTextView
         addSubviewsView()
         setupConstraints()
+        showViewPhotosButton(false)
     }
     
     // MARK: - Private methods
@@ -140,6 +147,7 @@ final class DetailViewController: NSViewController {
         adaptabilityLabel.stringValue = "Adaptability: " + starRating(for: breed.adaptability)
         affectionLevelLabel.stringValue = "Affection level: " + starRating(for: breed.affectionLevel)
         
+        showViewPhotosButton(true)
         setLinkWikipedia()
         fetchImage()
     }
@@ -160,6 +168,7 @@ final class DetailViewController: NSViewController {
             catImageView.image = nil
         }
     }
+    
     private func setLinkWikipedia() {
         if let wikipediaURL = breed?.wikipediaURL {
             let wikipediaLink = "Link of Wikipedia: \(wikipediaURL.absoluteString)"
@@ -191,6 +200,14 @@ final class DetailViewController: NSViewController {
         
         return filledStars + emptyStars
     }
+    
+    private func showViewPhotosButton(_ show: Bool) {
+        viewPhotosButton.isHidden = !show
+    }
+    
+    @objc
+    private func viewPhotosButtonTapped() {
+    }
 }
 
 // MARK: - Setup constrains
@@ -210,6 +227,7 @@ private extension DetailViewController {
         view.addSubview(adaptabilityLabel)
         view.addSubview(affectionLevelLabel)
         view.addSubview(catImageView)
+        view.addSubview(viewPhotosButton)
         
         energyLevelLabel.translatesAutoresizingMaskIntoConstraints = false
         intelligenceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -223,6 +241,7 @@ private extension DetailViewController {
         adaptabilityLabel.translatesAutoresizingMaskIntoConstraints = false
         affectionLevelLabel.translatesAutoresizingMaskIntoConstraints = false
         catImageView.translatesAutoresizingMaskIntoConstraints = false
+        viewPhotosButton.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setupConstraints() {
@@ -236,7 +255,10 @@ private extension DetailViewController {
             catImageView.widthAnchor.constraint(equalToConstant: .sizeImage),
             catImageView.heightAnchor.constraint(equalToConstant: .sizeImage),
             
-            originLabel.topAnchor.constraint(equalTo: catImageView.bottomAnchor, constant: 30),
+            viewPhotosButton.topAnchor.constraint(equalTo: catImageView.bottomAnchor, constant: 30),
+            viewPhotosButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
+            
+            originLabel.topAnchor.constraint(equalTo: viewPhotosButton.bottomAnchor, constant: 30),
             originLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: .leadingAnchor),
             
             lifeSpan.topAnchor.constraint(equalTo: originLabel.bottomAnchor, constant: .topAnchor),

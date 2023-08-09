@@ -133,6 +133,7 @@
 		5068CC962A810341008235D6 /* DetailScreen */ = {
 			isa = PBXGroup;
 			children = (
+				508C57B22A83C4F000322041 /* Cell */,
 				5068CC932A80FEF8008235D6 /* DetailViewController.swift */,
 			);
 			path = DetailScreen;
@@ -145,6 +146,13 @@
 				5068CCD82A8169C2008235D6 /* NetworkModel.swift */,
 			);
 			path = NetworkService;
+			sourceTree = "<group>";
+		};
+		508C57B22A83C4F000322041 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
