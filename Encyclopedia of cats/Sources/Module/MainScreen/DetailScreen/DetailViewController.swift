@@ -6,6 +6,12 @@ final class DetailViewController: NSViewController {
     
     // MARK: - Ui
     
+    private let catImageView: NSImageView = {
+        let imageView = NSImageView()
+        imageView.imageScaling = .scaleProportionallyUpOrDown
+        return imageView
+    }()
+    
     private let descriptionTextView: NSTextView = {
         let textView = NSTextView()
         textView.isEditable = false
@@ -38,7 +44,7 @@ final class DetailViewController: NSViewController {
         label.font = NSFont.systemFont(ofSize: 16.0)
         return label
     }()
-
+    
     private let originLabel: NSTextField = {
         let label = NSTextField()
         label.isEditable = false
@@ -135,10 +141,25 @@ final class DetailViewController: NSViewController {
         affectionLevelLabel.stringValue = "Affection level: " + starRating(for: breed.affectionLevel)
         
         setLinkWikipedia()
+        fetchImage()
     }
     
     // MARK: - Private methods
     
+    private func fetchImage() {
+        if let imageURL = breed?.imageURL {
+            DispatchQueue.global().async {
+                if let data = try? Data(contentsOf: imageURL),
+                   let image = NSImage(data: data) {
+                    DispatchQueue.main.async {
+                        self.catImageView.image = image
+                    }
+                }
+            }
+        } else {
+            catImageView.image = nil
+        }
+    }
     private func setLinkWikipedia() {
         if let wikipediaURL = breed?.wikipediaURL {
             let wikipediaLink = "Link of Wikipedia: \(wikipediaURL.absoluteString)"
@@ -188,6 +209,7 @@ private extension DetailViewController {
         view.addSubview(lifeSpan)
         view.addSubview(adaptabilityLabel)
         view.addSubview(affectionLevelLabel)
+        view.addSubview(catImageView)
         
         energyLevelLabel.translatesAutoresizingMaskIntoConstraints = false
         intelligenceLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -200,6 +222,7 @@ private extension DetailViewController {
         lifeSpan.translatesAutoresizingMaskIntoConstraints = false
         adaptabilityLabel.translatesAutoresizingMaskIntoConstraints = false
         affectionLevelLabel.translatesAutoresizingMaskIntoConstraints = false
+        catImageView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     func setupConstraints() {
@@ -208,7 +231,12 @@ private extension DetailViewController {
             nameBreadLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 15),
             nameBreadLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             
-            originLabel.topAnchor.constraint(equalTo: nameBreadLabel.bottomAnchor, constant: 30),
+            catImageView.topAnchor.constraint(equalTo: nameBreadLabel.bottomAnchor, constant: 10),
+            catImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
+            catImageView.widthAnchor.constraint(equalToConstant: 250),
+            catImageView.heightAnchor.constraint(equalToConstant: 250),
+            
+            originLabel.topAnchor.constraint(equalTo: catImageView.bottomAnchor, constant: 30),
             originLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10),
             
             lifeSpan.topAnchor.constraint(equalTo: originLabel.bottomAnchor, constant: 15),
