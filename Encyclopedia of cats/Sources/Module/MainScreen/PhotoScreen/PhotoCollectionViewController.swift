@@ -1,11 +1,13 @@
 import Cocoa
 
-final class PhotoCollectionViewController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate {
+final class PhotoCollectionViewController: NSViewController {
     
     var selectedBreed: NetworkModel?
     private var photos: [NSImage] = []
     private var currentPage = 1
     private let imagesPerPage = 10
+    
+    // MARK: - Ui
     
     private let collectionView: NSCollectionView = {
         let collectionView = NSCollectionView()
@@ -15,40 +17,47 @@ final class PhotoCollectionViewController: NSViewController, NSCollectionViewDat
         return collectionView
     }()
     
+    // MARK: - Lifecycle
+    
     override func loadView() {
         self.view = collectionView
-        fetchImage()
+        setupConstraints()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchImage()
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(PhotoCollectionViewItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier("PhotoCell"))
     }
-
+    
+    // MARK: - Private methods
+    
     private func fetchImage() {
         if let selectedBreed = selectedBreed {
             NetworkManager.shared.fetchBreedImages(breedID: selectedBreed.id, page: currentPage, limit: imagesPerPage) { [weak self] imageUrls in
                 DispatchQueue.global(qos: .userInitiated).async {
                     var loadedImages: [NSImage] = []
-
+                    
                     let group = DispatchGroup()
-
+                    
                     for imageUrl in imageUrls {
                         group.enter()
                         if let url = URL(string: imageUrl.absoluteString) {
                             URLSession.shared.dataTask(with: url) { data, _, _ in
                                 defer { group.leave() }
                                 if let data = data, let image = NSImage(data: data) {
+                                    print("Image size: \(image.size)")
                                     loadedImages.append(image)
+                                    
                                 }
                             }.resume()
                         }
                     }
-
+                    
                     group.wait()
-
+                    
                     DispatchQueue.main.async {
                         self?.photos += loadedImages
                         self?.collectionView.reloadData()
@@ -57,8 +66,11 @@ final class PhotoCollectionViewController: NSViewController, NSCollectionViewDat
             }
         }
     }
-    
-    // MARK: - NSCollectionViewDataSource
+}
+
+// MARK: - NSCollectionViewDataSource
+
+extension PhotoCollectionViewController: NSCollectionViewDataSource {
     
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
         return photos.count
@@ -78,8 +90,12 @@ final class PhotoCollectionViewController: NSViewController, NSCollectionViewDat
             fetchImage()
         }
     }
-
+    
 }
+
+// MARK: - NSCollectionViewDelegate
+
+extension PhotoCollectionViewController: NSCollectionViewDelegate {}
 
 // MARK: - Setup constrains
 

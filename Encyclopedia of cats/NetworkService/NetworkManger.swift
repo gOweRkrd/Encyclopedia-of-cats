@@ -92,23 +92,23 @@ final class NetworkManager {
             completion([])
             return
         }
-
+        
         var request = URLRequest(url: url)
         request.addValue(apiKey, forHTTPHeaderField: "x-api-key")
-
+        
         URLSession.shared.dataTask(with: request) { data, _, error in
             if let error = error {
                 print("Error fetching breed images: \(error)")
                 completion([])
                 return
             }
-
+            
             guard let data = data else {
                 print("No data received for breed images")
                 completion([])
                 return
             }
-
+            
             do {
                 let imageResponses = try JSONDecoder().decode([ImageResponse].self, from: data)
                 let imageUrls = imageResponses.compactMap { $0.url }
@@ -119,5 +119,4 @@ final class NetworkManager {
             }
         }.resume()
     }
-
 }
