@@ -205,8 +205,17 @@ final class DetailViewController: NSViewController {
         viewPhotosButton.isHidden = !show
     }
     
-    @objc
-    private func viewPhotosButtonTapped() {
+    @objc private func viewPhotosButtonTapped() {
+        let photoCollectionViewController = PhotoCollectionViewController()
+        photoCollectionViewController.selectedBreed = breed
+
+        let window = NSWindow(contentViewController: photoCollectionViewController)
+        window.styleMask = [.closable, .titled]
+        window.title = "Photos"
+        window.setContentSize(NSSize(width: 500, height: 500))
+        window.center()
+
+        window.makeKeyAndOrderFront(nil)
     }
 }
 

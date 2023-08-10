@@ -83,4 +83,41 @@ final class NetworkManager {
             }
         }.resume()
     }
+    
+    func fetchBreedImages(breedID: String, page: Int, limit: Int, completion: @escaping ([URL]) -> Void) {
+        let apiKey = "live_yqJTWHB0Cu3gnYox6LBsIXGa6z0g2AKW6Bst5fuUm3JGrWUrlTHefPjdyDmP3LqV"
+        let urlString = "https://api.thecatapi.com/v1/images/search?breed_ids=\(breedID)&page=\(page)&limit=\(limit)"
+        guard let url = URL(string: urlString) else {
+            print("Invalid URL")
+            completion([])
+            return
+        }
+
+        var request = URLRequest(url: url)
+        request.addValue(apiKey, forHTTPHeaderField: "x-api-key")
+
+        URLSession.shared.dataTask(with: request) { data, _, error in
+            if let error = error {
+                print("Error fetching breed images: \(error)")
+                completion([])
+                return
+            }
+
+            guard let data = data else {
+                print("No data received for breed images")
+                completion([])
+                return
+            }
+
+            do {
+                let imageResponses = try JSONDecoder().decode([ImageResponse].self, from: data)
+                let imageUrls = imageResponses.compactMap { $0.url }
+                completion(imageUrls)
+            } catch {
+                print("Error decoding breed images JSON: \(error)")
+                completion([])
+            }
+        }.resume()
+    }
+
 }
