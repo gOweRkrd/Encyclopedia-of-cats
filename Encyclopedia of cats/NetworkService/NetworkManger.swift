@@ -7,6 +7,12 @@ final class NetworkManager {
     private init() {}
     
     func fetchCatBreeds(completion: @escaping ([NetworkModel]?) -> Void) {
+        
+        if let cachedBreeds = CacheManager.shared.getObject(forKey: "catBreeds") as? [NetworkModel] {
+            completion(cachedBreeds)
+            return
+        }
+        
         let apiKey = "live_yqJTWHB0Cu3gnYox6LBsIXGa6z0g2AKW6Bst5fuUm3JGrWUrlTHefPjdyDmP3LqV"
         let url = URL(string: "https://api.thecatapi.com/v1/breeds")!
         
@@ -40,6 +46,7 @@ final class NetworkManager {
                     }
                 }
                 imageFetchGroup.notify(queue: .main) {
+                    CacheManager.shared.storeObject(catBreeds, forKey: "catBreeds")
                     completion(catBreeds)
                 }
             } catch {

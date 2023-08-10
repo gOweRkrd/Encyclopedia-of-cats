@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		50688B3F2A84D3FC0039BF8D /* PhotoCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50688B3E2A84D3FC0039BF8D /* PhotoCollectionViewController.swift */; };
 		50688B412A84F30C0039BF8D /* PhotoCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50688B402A84F30C0039BF8D /* PhotoCollectionViewItem.swift */; };
+		50688B442A8501A60039BF8D /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50688B432A8501A60039BF8D /* CacheManager.swift */; };
 		5068CC792A7F82EC008235D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068CC782A7F82EC008235D6 /* AppDelegate.swift */; };
 		5068CC7B2A7F82EC008235D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5068CC7A2A7F82EC008235D6 /* ViewController.swift */; };
 		5068CC7D2A7F82EE008235D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5068CC7C2A7F82EE008235D6 /* Assets.xcassets */; };
@@ -22,6 +23,7 @@
 /* Begin PBXFileReference section */
 		50688B3E2A84D3FC0039BF8D /* PhotoCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewController.swift; sourceTree = "<group>"; };
 		50688B402A84F30C0039BF8D /* PhotoCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCollectionViewItem.swift; sourceTree = "<group>"; };
+		50688B432A8501A60039BF8D /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
 		5068CC752A7F82EC008235D6 /* Encyclopedia of cats.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Encyclopedia of cats.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5068CC782A7F82EC008235D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5068CC7A2A7F82EC008235D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			children = (
 				5068CC9C2A810590008235D6 /* NetworkManger.swift */,
 				5068CCD82A8169C2008235D6 /* NetworkModel.swift */,
+				50688B432A8501A60039BF8D /* CacheManager.swift */,
 			);
 			path = NetworkService;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				5068CC942A80FEF8008235D6 /* DetailViewController.swift in Sources */,
 				50688B412A84F30C0039BF8D /* PhotoCollectionViewItem.swift in Sources */,
 				5068CC8C2A80F38D008235D6 /* MainCellView.swift in Sources */,
+				50688B442A8501A60039BF8D /* CacheManager.swift in Sources */,
 				5068CC792A7F82EC008235D6 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
