@@ -18,7 +18,7 @@ struct NetworkModel: Decodable {
     let lifeSpan: String
     let affectionLevel: Int
     let referenceImageID: String?
-    var imageURL: URL? 
+    var imageURL: URL?
     
     private enum CodingKeys: String, CodingKey {
         case id, name, temperament, origin, description

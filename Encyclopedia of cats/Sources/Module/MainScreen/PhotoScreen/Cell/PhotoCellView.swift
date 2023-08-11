@@ -1,6 +1,6 @@
 import Cocoa
 
-final class PhotoCollectionViewItem: NSCollectionViewItem {
+final class PhotoCellView: NSCollectionViewItem {
     
     static let identifier = NSUserInterfaceItemIdentifier("PhotoCollectionViewItemIdentifier")
     
@@ -24,13 +24,15 @@ final class PhotoCollectionViewItem: NSCollectionViewItem {
     override func loadView() {
         view = NSView()
         view.addSubview(customImageView)
+        view.wantsLayer = true
+        view.layer?.backgroundColor = R.Colors.lightGray.cgColor
         setupConstraints()
     }
 }
 
 // MARK: - Setup constraints
 
-private extension PhotoCollectionViewItem {
+private extension PhotoCellView {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
@@ -38,8 +40,14 @@ private extension PhotoCollectionViewItem {
             customImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             customImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             customImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            customImageView.widthAnchor.constraint(equalToConstant: 200),
-            customImageView.heightAnchor.constraint(equalToConstant: 200)
+            customImageView.widthAnchor.constraint(equalToConstant: .sizeImage),
+            customImageView.heightAnchor.constraint(equalToConstant: .sizeImage)
         ])
     }
+}
+
+// MARK: - Constant Constraints
+
+private extension CGFloat {
+    static let sizeImage: CGFloat = 250
 }

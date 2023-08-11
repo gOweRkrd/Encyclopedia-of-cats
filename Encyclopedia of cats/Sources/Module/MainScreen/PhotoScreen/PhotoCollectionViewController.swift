@@ -5,35 +5,28 @@ final class PhotoCollectionViewController: NSViewController {
     var selectedBreed: NetworkModel?
     private var photos: [NSImage] = []
     private var currentPage = 1
+    private let photoBreadView = PhotoBreadView()
     private let imagesPerPage = 10
-    
-    // MARK: - Ui
-    
-    private let collectionView: NSCollectionView = {
-        let collectionView = NSCollectionView()
-        let flowLayout = NSCollectionViewFlowLayout()
-        flowLayout.scrollDirection = .vertical
-        collectionView.collectionViewLayout = flowLayout
-        return collectionView
-    }()
     
     // MARK: - Lifecycle
     
     override func loadView() {
-        self.view = collectionView
-        setupConstraints()
+        self.view = photoBreadView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchImage()
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.register(PhotoCollectionViewItem.self, forItemWithIdentifier: NSUserInterfaceItemIdentifier("PhotoCell"))
+        delegateCollectionView()
+        self.photoBreadView.collectionView.collectionViewLayout?.invalidateLayout()
     }
     
     // MARK: - Private methods
     
+    private func delegateCollectionView() {
+        photoBreadView.collectionView.dataSource = self
+        photoBreadView.collectionView.delegate = self
+    }
     private func fetchImage() {
         if let selectedBreed = selectedBreed {
             NetworkManager.shared.fetchBreedImages(breedID: selectedBreed.id, page: currentPage, limit: imagesPerPage) { [weak self] imageUrls in
@@ -48,7 +41,6 @@ final class PhotoCollectionViewController: NSViewController {
                             URLSession.shared.dataTask(with: url) { data, _, _ in
                                 defer { group.leave() }
                                 if let data = data, let image = NSImage(data: data) {
-                                    print("Image size: \(image.size)")
                                     loadedImages.append(image)
                                     
                                 }
@@ -60,7 +52,7 @@ final class PhotoCollectionViewController: NSViewController {
                     
                     DispatchQueue.main.async {
                         self?.photos += loadedImages
-                        self?.collectionView.reloadData()
+                        self?.photoBreadView.collectionView.reloadData()
                     }
                 }
             }
@@ -78,7 +70,7 @@ extension PhotoCollectionViewController: NSCollectionViewDataSource {
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier("PhotoCell"), for: indexPath)
-        if let photoItem = item as? PhotoCollectionViewItem {
+        if let photoItem = item as? PhotoCellView {
             photoItem.representedObject = photos[indexPath.item]
         }
         return item
@@ -97,21 +89,13 @@ extension PhotoCollectionViewController: NSCollectionViewDataSource {
 
 extension PhotoCollectionViewController: NSCollectionViewDelegate {}
 
-// MARK: - Setup constrains
+// MARK: - CollectionViewDelegateFlowLayout
 
-private extension PhotoCollectionViewController {
-    
-    func addSubviewsView() {
-        view.addSubview(collectionView)
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
-    func setupConstraints() {
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.topAnchor),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
+extension PhotoCollectionViewController: NSCollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let cellWidth: CGFloat = 250
+        let cellHeight: CGFloat = 250
+        
+        return CGSize(width: cellWidth, height: cellHeight)
     }
 }

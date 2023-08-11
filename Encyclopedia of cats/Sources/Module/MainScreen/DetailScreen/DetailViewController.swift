@@ -13,7 +13,7 @@ final class DetailViewController: NSViewController {
     }()
     
     private lazy var viewPhotosButton: NSButton = {
-        let button = NSButton(title: "View Photos", target: self, action: #selector(viewPhotosButtonTapped))
+        let button = NSButton(title: R.DetailViewController.viewPhotosButton, target: self, action: #selector(viewPhotosButtonTapped))
         button.bezelStyle = .rounded
         return button
     }()
@@ -28,8 +28,9 @@ final class DetailViewController: NSViewController {
     private let nameBreadLabel: NSTextField = {
         let label = NSTextField()
         label.isEditable = false
+        label.isBordered = false
         label.backgroundColor = NSColor.clear
-        label.font = NSFont.systemFont(ofSize: 26.0)
+        label.font = NSFont(name: "SFProDisplay-Bold", size: 26)
         return label
     }()
     
@@ -38,7 +39,7 @@ final class DetailViewController: NSViewController {
         label.isEditable = false
         label.isBordered = false
         label.backgroundColor = NSColor.clear
-        label.font = NSFont.systemFont(ofSize: 16.0)
+        label.font = NSFont(name: "SFProDisplay-Medium", size: 16)
         return label
     }()
     
@@ -47,7 +48,7 @@ final class DetailViewController: NSViewController {
         label.isEditable = false
         label.isBordered = false
         label.backgroundColor = NSColor.clear
-        label.font = NSFont.systemFont(ofSize: 16.0)
+        label.font = NSFont(name: "SFProDisplay-Medium", size: 16)
         return label
     }()
     
@@ -56,7 +57,7 @@ final class DetailViewController: NSViewController {
         label.isEditable = false
         label.isBordered = false
         label.backgroundColor = NSColor.clear
-        label.font = NSFont.systemFont(ofSize: 16.0)
+        label.font = NSFont(name: "SFProDisplay-Medium", size: 16)
         return label
     }()
     
@@ -65,7 +66,7 @@ final class DetailViewController: NSViewController {
         label.isEditable = false
         label.isBordered = false
         label.backgroundColor = NSColor.clear
-        label.font = NSFont.systemFont(ofSize: 16.0)
+        label.font = NSFont(name: "SFProDisplay-Medium", size: 16)
         return label
     }()
     
@@ -74,7 +75,9 @@ final class DetailViewController: NSViewController {
         label.isEditable = false
         label.isBordered = false
         label.backgroundColor = NSColor.clear
-        label.font = NSFont.systemFont(ofSize: 16.0)
+        label.lineBreakMode = .byWordWrapping
+        label.preferredMaxLayoutWidth = 600
+        label.font = NSFont(name: "SFProDisplay-Medium", size: 16)
         return label
     }()
     
@@ -83,7 +86,7 @@ final class DetailViewController: NSViewController {
         label.isEditable = false
         label.isBordered = false
         label.backgroundColor = NSColor.clear
-        label.font = NSFont.systemFont(ofSize: 16.0)
+        label.font = NSFont(name: "SFProDisplay-Medium", size: 16)
         return label
     }()
     
@@ -92,7 +95,7 @@ final class DetailViewController: NSViewController {
         label.isEditable = false
         label.isBordered = false
         label.backgroundColor = NSColor.clear
-        label.font = NSFont.systemFont(ofSize: 16.0)
+        label.font = NSFont(name: "SFProDisplay-Medium", size: 16)
         return label
     }()
     
@@ -101,7 +104,7 @@ final class DetailViewController: NSViewController {
         label.isEditable = false
         label.isBordered = false
         label.backgroundColor = NSColor.clear
-        label.font = NSFont.systemFont(ofSize: 16.0)
+        label.font = NSFont(name: "SFProDisplay-Medium", size: 16)
         return label
     }()
     
@@ -110,7 +113,7 @@ final class DetailViewController: NSViewController {
         label.isEditable = false
         label.isBordered = false
         label.backgroundColor = NSColor.clear
-        label.font = NSFont.systemFont(ofSize: 16.0)
+        label.font = NSFont(name: "SFProDisplay-Medium", size: 16)
         return label
     }()
     
@@ -119,11 +122,9 @@ final class DetailViewController: NSViewController {
         label.isEditable = false
         label.isBordered = false
         label.backgroundColor = NSColor.clear
-        label.font = NSFont.systemFont(ofSize: 16.0)
+        label.font = NSFont(name: "SFProDisplay-Medium", size: 16)
         return label
     }()
-    
-    // MARK: - Lifecycle
     
     override func loadView() {
         self.view = descriptionTextView
@@ -136,16 +137,16 @@ final class DetailViewController: NSViewController {
     
     func updateData(with breed: NetworkModel) {
         self.breed = breed
-        energyLevelLabel.stringValue = "Energy Level: " + starRating(for: breed.energyLevel)
-        intelligenceLabel.stringValue = "Intelligence: " + starRating(for: breed.intelligence)
-        dogFriendly.stringValue = "Dog Friendly: " + starRating(for: breed.dogFriendly)
-        temperamentLabel.stringValue = "Temperament: \(breed.temperament)"
-        originLabel.stringValue = "Origin: \(breed.origin)"
-        descriptionLabel.stringValue = "Description: \(breed.description)"
-        nameBreadLabel.stringValue = "Name of the breed: \(breed.name)"
-        lifeSpan.stringValue = "Life span: \(breed.lifeSpan)"
-        adaptabilityLabel.stringValue = "Adaptability: " + starRating(for: breed.adaptability)
-        affectionLevelLabel.stringValue = "Affection level: " + starRating(for: breed.affectionLevel)
+        energyLevelLabel.stringValue = R.DetailViewController.energyLevelLabel + starRating(for: breed.energyLevel)
+        intelligenceLabel.stringValue = R.DetailViewController.intelligenceLabel + starRating(for: breed.intelligence)
+        dogFriendly.stringValue = R.DetailViewController.dogFriendly + starRating(for: breed.dogFriendly)
+        temperamentLabel.stringValue = "\(R.DetailViewController.temperamentLabel) \(breed.temperament)"
+        originLabel.stringValue = "\(R.DetailViewController.originLabel) \(breed.origin)"
+        descriptionLabel.stringValue = "\(R.DetailViewController.descriptionLabel): \(breed.description)"
+        nameBreadLabel.stringValue = "\(R.DetailViewController.nameBreadLabel) \(breed.name)"
+        lifeSpan.stringValue = "\(R.DetailViewController.lifeSpan) \(breed.lifeSpan)"
+        adaptabilityLabel.stringValue = R.DetailViewController.adaptabilityLabel + starRating(for: breed.adaptability)
+        affectionLevelLabel.stringValue = R.DetailViewController.affectionLevelLabel + starRating(for: breed.affectionLevel)
         
         showViewPhotosButton(true)
         setLinkWikipedia()
@@ -171,7 +172,7 @@ final class DetailViewController: NSViewController {
     
     private func setLinkWikipedia() {
         if let wikipediaURL = breed?.wikipediaURL {
-            let wikipediaLink = "Link of Wikipedia: \(wikipediaURL.absoluteString)"
+            let wikipediaLink = "\(R.DetailViewController.wikipediaLink) \(wikipediaURL.absoluteString)"
             let attributedString = NSMutableAttributedString(string: wikipediaLink)
             let linkRange = (wikipediaLink as NSString).range(of: wikipediaURL.absoluteString)
             
@@ -183,7 +184,7 @@ final class DetailViewController: NSViewController {
             wikipediaLabel.allowsEditingTextAttributes = true
             wikipediaLabel.attributedStringValue = attributedString
         } else {
-            wikipediaLabel.stringValue = "Link of Wikipedia: Not available"
+            wikipediaLabel.stringValue = R.DetailViewController.wikipediaLinkError
             wikipediaLabel.isSelectable = false
             wikipediaLabel.allowsEditingTextAttributes = false
         }
@@ -205,6 +206,8 @@ final class DetailViewController: NSViewController {
         viewPhotosButton.isHidden = !show
     }
     
+    // MARK: - Action
+    
     @objc
     private func viewPhotosButtonTapped() {
         let photoCollectionViewController = PhotoCollectionViewController()
@@ -212,10 +215,9 @@ final class DetailViewController: NSViewController {
         
         let window = NSWindow(contentViewController: photoCollectionViewController)
         window.styleMask = [.closable, .titled]
-        window.title = "Photos"
-        window.setContentSize(NSSize(width: 500, height: 500))
+        window.title = R.DetailViewController.title
+        window.setContentSize(NSSize(width: 500, height: 300))
         window.center()
-        
         window.makeKeyAndOrderFront(nil)
     }
 }
@@ -225,33 +227,7 @@ final class DetailViewController: NSViewController {
 private extension DetailViewController {
     
     func addSubviewsView() {
-        view.addSubview(energyLevelLabel)
-        view.addSubview(intelligenceLabel)
-        view.addSubview(dogFriendly)
-        view.addSubview(temperamentLabel)
-        view.addSubview(originLabel)
-        view.addSubview(wikipediaLabel)
-        view.addSubview(descriptionLabel)
-        view.addSubview(nameBreadLabel)
-        view.addSubview(lifeSpan)
-        view.addSubview(adaptabilityLabel)
-        view.addSubview(affectionLevelLabel)
-        view.addSubview(catImageView)
-        view.addSubview(viewPhotosButton)
-        
-        energyLevelLabel.translatesAutoresizingMaskIntoConstraints = false
-        intelligenceLabel.translatesAutoresizingMaskIntoConstraints = false
-        dogFriendly.translatesAutoresizingMaskIntoConstraints = false
-        temperamentLabel.translatesAutoresizingMaskIntoConstraints = false
-        originLabel.translatesAutoresizingMaskIntoConstraints = false
-        wikipediaLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameBreadLabel.translatesAutoresizingMaskIntoConstraints = false
-        lifeSpan.translatesAutoresizingMaskIntoConstraints = false
-        adaptabilityLabel.translatesAutoresizingMaskIntoConstraints = false
-        affectionLevelLabel.translatesAutoresizingMaskIntoConstraints = false
-        catImageView.translatesAutoresizingMaskIntoConstraints = false
-        viewPhotosButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubviews([energyLevelLabel, intelligenceLabel, dogFriendly, temperamentLabel, originLabel, wikipediaLabel, descriptionLabel, nameBreadLabel, lifeSpan, adaptabilityLabel, affectionLevelLabel, catImageView, catImageView, viewPhotosButton])
     }
     
     func setupConstraints() {

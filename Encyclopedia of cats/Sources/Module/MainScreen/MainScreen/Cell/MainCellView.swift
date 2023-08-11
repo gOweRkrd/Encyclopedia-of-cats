@@ -15,7 +15,7 @@ final class MainCellView: NSTableCellView {
         label.backgroundColor = NSColor.clear
         label.autoresizingMask = [.width, .height]
         label.backgroundColor = NSColor.clear
-        label.font = NSFont.systemFont(ofSize: 16.0)
+        label.font = NSFont(name: "SFProDisplay-Medium", size: 16)
         return label
     }()
     

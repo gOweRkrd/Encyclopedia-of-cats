@@ -20,7 +20,7 @@ final class ViewController: NSViewController {
         super.viewDidLoad()
         
         view.wantsLayer = true
-        view.layer?.backgroundColor = NSColor.lightGray.cgColor
+        view.layer?.backgroundColor = R.Colors.lightGray.cgColor
         addSubviewsView()
         setupConstraints()
         tableView.reloadData()
@@ -28,7 +28,9 @@ final class ViewController: NSViewController {
         
     }
     
-    func fetchCatBreeds() {
+    // MARK: - Private Methods
+    
+    private func fetchCatBreeds() {
         NetworkManager.shared.fetchCatBreeds { [weak self] breeds in
             if let breeds = breeds {
                 self?.catBreeds = breeds
@@ -75,7 +77,6 @@ extension ViewController: NSTableViewDelegate {
             breedDescriptionViewController.updateData(with: selectedBreed)
         }
     }
-    
 }
 
 // MARK: - Setup constrains
