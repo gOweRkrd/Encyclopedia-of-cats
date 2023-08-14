@@ -31,7 +31,7 @@ final class ViewController: NSViewController {
     // MARK: - Private Methods
     
     private func fetchCatBreeds() {
-        NetworkManager.shared.fetchCatBreeds { [weak self] breeds in
+        NetworkManager.shared.fetchCatBreeds { [weak self] breeds, _  in
             if let breeds = breeds {
                 self?.catBreeds = breeds
                 DispatchQueue.main.async {

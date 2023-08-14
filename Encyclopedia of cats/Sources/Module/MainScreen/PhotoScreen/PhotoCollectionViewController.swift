@@ -29,7 +29,7 @@ final class PhotoCollectionViewController: NSViewController {
     }
     private func fetchImage() {
         if let selectedBreed = selectedBreed {
-            NetworkManager.shared.fetchBreedImages(breedID: selectedBreed.id, page: currentPage, limit: imagesPerPage) { [weak self] imageUrls in
+            NetworkManager.shared.fetchBreedImages(breedID: selectedBreed.id, page: currentPage, limit: imagesPerPage) { [weak self] imageUrls, _  in
                 DispatchQueue.global(qos: .userInitiated).async {
                     var loadedImages: [NSImage] = []
                     
