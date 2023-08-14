@@ -20,7 +20,6 @@ final class ViewController: NSViewController {
         super.viewDidLoad()
         
         view.wantsLayer = true
-        view.layer?.backgroundColor = R.Colors.lightGray.cgColor
         addSubviewsView()
         setupConstraints()
         tableView.reloadData()
